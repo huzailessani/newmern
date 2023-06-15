@@ -56,80 +56,82 @@
 //         console.log(error)
 //     }
 // })
-const express = require("express");
-const router = express.Router();
-const mongoose = require("mongoose");
-
-// Define the User schema
-const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    cpassword: {
-        type: String,
-        required: true,
-    },
-});
-
-// Create the User model
-const User = mongoose.model("User", userSchema);
-
-// Define the route handler for user registration
-router.post("/register", (req, res) => {
-    const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        cpassword: req.body.cpassword, // Make sure this value is a string
-    });
 
 
-    // Save the user document
-    user
-        .save()
-        .then(() => {
-            res.status(201).json({ message: "User registered successfully!" });
-        })
-        .catch((err) => {
-            res.status(500).json({ error: "Failed to register user." });
-        });
-});
-
-router.post("/signin", async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        if (!email || !password) {
-            return res.status(400).json({ error: "Please provide both name and password" });
-        }
-
-        const user = await User.findOne({ email: email, password: password });
-
-        if (user) {
-            return res.status(200).json({ message: "User signed in successfully!" });
-        } else {
-            return res.status(401).json({ error: "Invalid credentials" });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "Failed to sign in" });
-    }
-});
+// const express = require("express");
+// const router = express.Router();
+// const mongoose = require("mongoose");
 
 
+// const userSchema = new mongoose.Schema({
+//     name: {
+//         type: String,
+//         required: true,
+//     },
+//     email: {
+//         type: String,
+//         required: true,
+//     },
+//     password: {
+//         type: String,
+//         required: true,
+//     },
+//     cpassword: {
+//         type: String,
+//         required: true,
+//     },
+// });
 
-// Save the user document
+
+// const User = mongoose.model("User", userSchema);
+
+
+// router.post("/register", (req, res) => {
+//     const user = new User({
+//         name: req.body.name,
+//         email: req.body.email,
+//         password: req.body.password,
+//         cpassword: req.body.cpassword,
+//     });
+
+
+   
+//     user
+//         .save()
+//         .then(() => {
+//             res.status(201).json({ message: "User registered successfully!" });
+//         })
+//         .catch((err) => {
+//             res.status(500).json({ error: "Failed to register user." });
+//         });
+// });
+
+// router.post("/signin", async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+
+//         if (!email || !password) {
+//             return res.status(400).json({ error: "Please provide both name and password" });
+//         }
+
+//         const user = await User.findOne({ email: email, password: password });
+
+//         if (user) {
+//             return res.status(200).json({ message: "User signed in successfully!" });
+//         } else {
+//             return res.status(401).json({ error: "Invalid credentials" });
+//         }
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ error: "Failed to sign in" });
+//     }
+// });
 
 
 
 
-module.exports = router;
+
+
+
+
+// module.exports = router;

@@ -48,7 +48,7 @@ require("./db/conn");
 app.use(express.json());
 app.use(cors());
 
-app.use(require("./router/auth"));
+// app.use(require("./router/auth"));
 app.use("/c", complaintRouter);
 
 const middleware = (req, res, next) => {
@@ -60,11 +60,11 @@ app.get("/", (req, res) => {
     res.send("Hello, world");
 });
 
-app.get("/signin", middleware, (req, res) => {
+app.get('/complaint', middleware, (req, res) => {
     res.send("Hello, world signin");
 });
 
-app.get("/signup", (req, res) => {
+app.get('/complaint', (req, res) => {
     res.send("Hello, world signup");
 });
 
