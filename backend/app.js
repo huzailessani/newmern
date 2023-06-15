@@ -68,9 +68,9 @@ app.get("/signup", (req, res) => {
     res.send("Hello, world signup");
 });
 
-if (process.env.NODE_ENV == "production") {
-    app.use(express.static("frontend/build"))
-}
+// if (process.env.NODE_ENV == "production") {
+//     app.use(express.static("frontend/build"))
+// }
 
 const start = async () => {
     try {
